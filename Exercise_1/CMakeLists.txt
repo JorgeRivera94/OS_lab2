@@ -10,7 +10,7 @@ project(Greetings)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable
+# Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
 add_executable(Greetings
                 src/main.c
                 src/greetings.c)

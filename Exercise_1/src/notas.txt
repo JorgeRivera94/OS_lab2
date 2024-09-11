@@ -1,6 +1,7 @@
 Instrucciones
 
-* Create a C program named greetings that prints 
+DONE TODO mover a su propio proyecto con su propia estructura
+* Create a C program named greetings that prints  **su propio proyecto
     “hello there, I’m process <pid>” 
     on screen and waits 10 seconds to print the message 
     “I’m done, bye!”.
@@ -11,8 +12,15 @@ Instrucciones
     them to end. The children of the child processes must use the 
     exec() function to invoke the greetings program.
 
+    ** so hay que crear un executable "greetings" para que los children lo llamen.
+    ** enteindo que sera como un arbol
+
+
 * Print the process tree using the “pstree -c -n” command in a 
     terminal, and include a screenshot in the project folder to 
     submit it with the source code.
 
-* Upload a compressed file with the project's folder, including the "src" and "include" directories and the cmakelists.txt file. The program will not be evaluated if it does not compile correctly with the cmakelists.txt file.
+* Upload a compressed file with the project's folder, including the "src" 
+    and "include" directories and the cmakelists.txt file. The program will 
+    not be evaluated if it does not compile correctly with the cmakelists.txt 
+    file.
