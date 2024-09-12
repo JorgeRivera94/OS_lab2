@@ -1,11 +1,12 @@
 Instrucciones
 
-DONE TODO mover a su propio proyecto con su propia estructura
+TODO DOCUMENTAR
 * Create a C program named greetings that prints  **su propio proyecto
     “hello there, I’m process <pid>” 
     on screen and waits 10 seconds to print the message 
     “I’m done, bye!”.
 
+TODO DOCUMENTAR
 * Make another program that creates three children using fork(). 
     Each child will print the message “I’m a child, and my id 
     is: <pid>” before creating two more children and waiting for 
@@ -15,11 +16,12 @@ DONE TODO mover a su propio proyecto con su propia estructura
     ** so hay que crear un executable "greetings" para que los children lo llamen.
     ** enteindo que sera como un arbol
 
-
+TODO TAKE SC
 * Print the process tree using the “pstree -c -n” command in a 
     terminal, and include a screenshot in the project folder to 
     submit it with the source code.
 
+TODO SUBMIT
 * Upload a compressed file with the project's folder, including the "src" 
     and "include" directories and the cmakelists.txt file. The program will 
     not be evaluated if it does not compile correctly with the cmakelists.txt 

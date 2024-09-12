@@ -5,12 +5,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -o0 - DEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-o3 -DNDEBUG -s")
 
 # Set the project name
-project(Greetings)
+project(exercise_1)
 
 # Incloude the current directory for header files
 include_directories(include)
 
 # Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
-add_executable(Greetings
+add_executable(exercise_1
                 src/main.c
-                src/greetings.c)
+                src/children.c)
