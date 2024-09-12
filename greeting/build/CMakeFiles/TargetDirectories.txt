@@ -1,3 +1,0 @@
-/home/os/os_101_10/Desktop/workspace/OS_lab2/greeting/build/CMakeFiles/greetings.dir
-/home/os/os_101_10/Desktop/workspace/OS_lab2/greeting/build/CMakeFiles/edit_cache.dir
-/home/os/os_101_10/Desktop/workspace/OS_lab2/greeting/build/CMakeFiles/rebuild_cache.dir
