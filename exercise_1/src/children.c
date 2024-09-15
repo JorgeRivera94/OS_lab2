@@ -21,7 +21,7 @@ void CreateChildren() {
           exit(0);
         }
       }
-      while (wait(NULL) > 0);  // wait returns pid if the terminated child
+      while (wait(NULL) > 0);  // wait returns pid of the terminated child
       exit(0);
     }
   }

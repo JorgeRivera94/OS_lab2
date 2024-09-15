@@ -6,7 +6,7 @@ TODO DOCUMENTAR
     on screen and waits 10 seconds to print the message 
     “I’m done, bye!”.
 
-TODO DOCUMENTAR
+DONE
 * Make another program that creates three children using fork(). 
     Each child will print the message “I’m a child, and my id 
     is: <pid>” before creating two more children and waiting for 
