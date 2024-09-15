@@ -1,0 +1,11 @@
+    Implement a program in which one process writes a large array (e.g., 1 million integers) into shared memory, and another process reads and sums up the array elements.
+
+    The numbers written into the shared memory block are consecutive integers from 1 to 1,000,000.
+
+    Measure the time from when the first byte is written into memory until the sum of the numbers is plotted on the screen.
+
+    Implement the same program using message queues between the processes instead of shared memory.
+
+    Compare the time performance between the two strategies. 
+
+    Upload a compressed file with the project's folder, including the "src" and "include" directories and the cmakelists.txt file. The program will not be evaluated if it does not compile correctly with the cmakelists.txt file.
