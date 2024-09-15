@@ -13,7 +13,7 @@ void CreateChildren() {
   for (int i = 0; i < 3; i++) {
     id = fork();  // 0 for children
     if (id == 0) {
-      printf("I’m a child, and my id is: %d\n", getpid());
+      printf("I'm a child, and my id is: %d\n", getpid());
       for (int j = 0; j < 2; j++) {
         cid = fork();
         if (cid == 0) {
