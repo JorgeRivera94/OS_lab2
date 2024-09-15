@@ -10,11 +10,11 @@ void Greet() {
   pid_t pid;
 
   // print message
-  printf("hello there, I’m process %d\n", getpid());
+  printf("hello there, I'm process %d\n", getpid());
 
   // wait 10s
   sleep(10);
 
   // print second message
-  printf("I’m done, bye!\n");
+  printf("I'm done, bye!\n");
 }
