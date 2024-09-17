@@ -20,7 +20,7 @@ void HandleCounters(pid_t* pids, int count) {
 
     // get action selection
     printf("Enter your selection: ");
-    scanf("&d", &selection);
+    scanf("%d", &selection);
     if (selection < 1 || selection > 5) {
       printf("Invalid option.\n");
       continue;
@@ -31,7 +31,7 @@ void HandleCounters(pid_t* pids, int count) {
       printf("Enter %d for process %d\n", i, pids[i]);
     }
     printf("Enter your selection: ");
-    scanf("&d", &index);
+    scanf("%d", &index);
     if (index < 0 || index >= count) {
       printf("Invalid option.\n");
       continue;
@@ -62,7 +62,7 @@ void HandleCounters(pid_t* pids, int count) {
     }
 
     // if no process is alive, stop
-    bool remaining = 0;
+    bool remaining = false;
     for (int i = 0; i < count; i++) {
       // send signal to check if alive
       if (kill(pids[i], 0) == 0) {
