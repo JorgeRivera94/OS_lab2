@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ipc.h>
-#include <sys/shm.h>
 #include <sys/stat.h>
 #include <time.h>
 
@@ -14,8 +13,8 @@
 #define MAX_SIZE 1024
 #define NUM_INTS 1000000
 
+//message queue
 mqd_t mq;
-struct mq_attr attr;
 char buffer[MAX_SIZE];
 
 // structs to measure elapsed time
@@ -31,29 +30,41 @@ void Write() {
   }
 
   // get start time
-
+  if (mq_receive(mq, buffer, MAX_SIZE, NULL) == -1) {
+      perror("mq_receive");
+      exit(1);
+  }
+  sscanf(buffer, "%ld.%09ld", &start.tv_sec, &start.tv_nsec);
+  
   // read from shared memory and add the values
-  for (int i = 0; i < 1000000; i++) {
-    sum += data[i];
+  long long sum = 0;
+  for (int i = 0; i < NUM_INTS; i++) {
+    if (mq_receive(mq, buffer, MAX_SIZE, NULL) == -1) {
+        perror("mq_receive");
+        exit(EXIT_FAILURE);
+    }
+    sum += atoi(buffer);
   }
 
   // get end time
   clock_gettime(CLOCK_MONOTONIC, &end);
 
+  //print values
   printf("The sum of the values is: %lld", sum);
 
-  // detach from memory block
-  if (shmdt(data) == -1) {
-    perror("Error detaching in shmdt");
-    exit(EXIT_FAILURE);
+  // calculate elapsed time
+  double elapsed_time = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+  printf("Time elapsed to read from the shared memory block: %f seconds.\n", elapsed_time);
+  
+  // Close the message queue
+  if (mq_close(mq) == -1) {
+      perror("mq_close");
+      exit(1);
   }
 
-  // free the memory block
-  shmctl(shm_id, IPC_RMID, NULL);
-
-  // print out the elapsed time for reading
-  double elapsed_time =
-      (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-  printf("Time elapsed to read from the shared memory block: %f seconds.\n",
-         elapsed_time);
+  // Unlink the message queue
+  if (mq_unlink(QUEUE_NAME) == -1) {
+      perror("mq_unlink");
+      exit(1);
+  }
 }
