@@ -14,6 +14,8 @@ writer escribe 1M de datos
 reader se suscribe, los lee y calcula la suma
 tiempo entre que writer empieza y reader imprime la sume
 **usa dos terminales
+
+****
 para lograr la vel maxima:
     lanzen el reader, este crea el bloque para 1M de ints
     hace un wait y se va adormir
