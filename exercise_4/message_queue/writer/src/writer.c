@@ -8,6 +8,7 @@
 #include <sys/ipc.h>
 #include <sys/stat.h>
 #include <time.h>
+#include <unistd.h>
 
 #define QUEUE_NAME "/test_queue"
 #define MAX_SIZE 1024
@@ -44,12 +45,24 @@ void Write() {
 
   // send the start time as the first message
   sprintf(buffer, MAX_SIZE, "%ld %ld", start.tv_sec, start.tv_nsec);
-  mq_send(mq, buffer, MAX_SIZE, 0);
+  if (mq_send(mq, buffer, MAX_SIZE, 0) == -1){
+    perror("Error sending start time in mq_send.");
+    exit(EXIT_FAILURE);
+  }
 
   // send 1,000,000 messages
-  for (int i = 0; i < NUM_INTS; i++) {
-    snprintf(buffer, MAX_SIZE, "%d", i + 1);
+  for (int i = 1; i <= NUM_INTS; i++) {
+    snprintf(buffer, MAX_SIZE, "%d", i);
 
-    mq_send(mq, buffer, MAX_SIZE, 0);
+    if (mq_send(mq, buffer, MAX_SIZE, 0) == -1) {
+      perror("Error sending start time in mq_send.");
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  // Close the message queue
+  if (mq_close(mq) == -1) {
+      perror("mq_close");
+      exit(1);
   }
 }
