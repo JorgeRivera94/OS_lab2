@@ -5,19 +5,28 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-// void Handler1
-void Handler(int signal, int* counter, int* direction) {
+// initial values for count and direction
+int counter = 0;
+int direction = 1;
+
+// signal handler
+void Handler(int signal) {
   if (signal == SIGUSR1) {
-    *counter = 0;
+    counter = 0;
   } else if (signal == SIGUSR2) {
-    *direction = -1 * (*direction);
+    direction = -1 * direction;
   }
 }
+
 void Count() {
-  int counter = 0;
-  int direction = 1;
-  int* counter_ptr = &counter;
-  int* direction_ptr = &direction;
+  // sigaction for signals
+  struct sigaction sa1;
+  sa1.sa_handler = Handler;
+  sigaction(SIGUSR1, &sa1, NULL);
+
+  struct sigaction sa2;
+  sa2.sa_handler = Handler;
+  sigaction(SIGUSR2, &sa2, NULL);
 
   // infinite loop
   while (1) {
