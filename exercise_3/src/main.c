@@ -1,6 +1,2 @@
 
-int main() {
-  Count();
-
-  return 0;
-}
+int main() { return 0; }
