@@ -4,12 +4,17 @@
 #include <stdlib.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <time.h>
 
 #define SHM_SIZE 1000000 * sizeof(int)  // Shared memory size
 
 key_t key;
 int shm_id;
 int* data;
+
+// structures to store elapsed time
+struct timespec start;
+struct timespec end;
 
 void Write() {
   // create a key
@@ -35,14 +40,26 @@ void Write() {
     exit(EXIT_FAILURE);
   }
 
+  // get start time
+  clock_gettime(CLOCK_MONOTONIC, &start);
+
   // write to shared memory
   for (int i = 0; i < 1000000; i++) {
     data[i] = i + 1;
   }
+
+  // get end time
+  clock_gettime(CLOCK_MONOTONIC, &end);
 
   // detach from memory block
   if (shmdt(data) == -1) {
     perror("Error detaching in shmdt");
     exit(EXIT_FAILURE);
   }
+
+  // print out the elapsed time for writing
+  double elapsed_time =
+      (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+  printf("Time elapsed to write to shared memory block: %f seconds.\n",
+         elapsed_time);
 }
