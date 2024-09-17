@@ -1,8 +1,11 @@
-Create a program called: “infinite_counter” that increments a counter in a loop prints the message “I’m counting, and my count is <counter_value>” and sleeps for 1 second.
+Create a program called: “infinite_counter” that increments a counter in a loop prints the message “I’m counting, and my count is <counter_value>” and sleeps
+ for 1 second.
 
-This program must handle the signals SIGUSR1 and SIGUSR2. If the program receives the SIGUSR1 signal, the counter resets to 0, and if the SIGUSR2 signal is received, the counter must change its counting direction (if it was increasing by 1, now it must decrease by 1).
+This program must handle the signals SIGUSR1 and SIGUSR2. If the program receives the SIGUSR1 signal, the counter resets to 0, and if the SIGUSR2 signal is 
+received, the counter must change its counting direction (if it was increasing by 1, now it must decrease by 1).
 
-Now, create a second process named “counter_handler”. This program will receive the pids of the current instances of “infinite_counter” as parameters. The process must show a user interface in the terminal where the user may:
+Now, create a second process named “counter_handler”. This program will receive the pids of the current instances of “infinite_counter” as parameters. The
+ process must show a user interface in the terminal where the user may:
 
     Stop a specific infinite-counter process
     Continue a specific infinite-counter process
@@ -12,4 +15,5 @@ Now, create a second process named “counter_handler”. This program will rece
 
 The program must handle at least 1 to 5 instances of the “infinite_counter” program.
 
-Upload a compressed file with the project's folder, including the "src" and "include" directories and the cmakelists.txt file. The program will not be evaluated if it does not compile correctly with the cmakelists.txt file.
+Upload a compressed file with the project's folder, including the "src" and "include" directories and the cmakelists.txt file. The program will not be
+ evaluated if it does not compile correctly with the cmakelists.txt file.
