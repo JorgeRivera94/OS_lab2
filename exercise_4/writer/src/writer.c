@@ -13,7 +13,7 @@ int* data;
 
 void Write() {
   // create a key
-  key = ftok("/tmp", 616);
+  key = ftok("temp", 616);
   if (key == -1) {
     perror("Error with ftok key creation.");
     exit(EXIT_FAILURE);
@@ -21,7 +21,7 @@ void Write() {
   printf("Key: %d", key);
 
   // request memory block
-  shm_id = shmget(key, SHM_SIZE, 0774 | IPC_CREAT);
+  shm_id = shmget(key, SHM_SIZE, 0777 | IPC_CREAT);
   if (shm_id == -1) {
     perror("Error requesting the block with shmget.");
     exit(EXIT_FAILURE);
