@@ -5,12 +5,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -o0 - DEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-o3 -DNDEBUG -s")
 
 # Set the project name
-project(terminal)
+project(writer)
 
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
-add_executable(terminal
+# Add the execuable
+add_executable(writer
                 src/main.c
-                src/terminal.c)
+                src/writer.c)
