@@ -1,5 +1,6 @@
 #include "writer.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -8,7 +9,7 @@
 
 key_t key;
 int shm_id;
-char* data;
+int* data;
 
 void Write() {
   // create a key
@@ -17,6 +18,7 @@ void Write() {
     perror("Error with ftok key creation.");
     exit(EXIT_FAILURE);
   }
+  printf("Key: %d", key);
 
   // request memory block
   shm_id = shmget(key, SHM_SIZE, 0774 | IPC_CREAT);
@@ -24,19 +26,23 @@ void Write() {
     perror("Error requesting the block with shmget.");
     exit(EXIT_FAILURE);
   }
+  printf("Mem id: %d", shm_id);
 
   // attach memory block to process
-  data = (char*)shmat(shm_id, NULL, 0);
-  if (data == (char*)-1) {
+  data = (int*)shmat(shm_id, NULL, 0);
+  if (data == (int*)-1) {
     perror("Error in shmat.");
     exit(EXIT_FAILURE);
   }
 
   // write to shared memory
   for (int i = 0; i < 1000000; i++) {
-    strcpy(data[i], i + 1);
+    data[i] = i + 1;
   }
 
   // detach from memory block
-  shmdt(data);
+  if (shmdt(data) == -1) {
+    perror("Error detaching in shmdt");
+    exit(EXIT_FAILURE);
+  }
 }
