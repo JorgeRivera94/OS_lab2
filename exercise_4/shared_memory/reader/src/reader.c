@@ -17,7 +17,7 @@ long long sum;
 struct timespec start;
 struct timespec end;
 
-void Write() {
+void Read() {
   // create a key
   key = ftok("temp", 616);
   if (key == -1) {

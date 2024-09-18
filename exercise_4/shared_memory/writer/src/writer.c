@@ -23,7 +23,7 @@ void Write() {
     perror("Error with ftok key creation.");
     exit(EXIT_FAILURE);
   }
-  printf("Key: %d", key);
+  printf("Key: %d\n", key);
 
   // request memory block
   shm_id = shmget(key, SHM_SIZE, 0777 | IPC_CREAT);
@@ -31,7 +31,7 @@ void Write() {
     perror("Error requesting the block with shmget.");
     exit(EXIT_FAILURE);
   }
-  printf("Mem id: %d", shm_id);
+  printf("Mem id: %d\n", shm_id);
 
   // attach memory block to process
   data = (int*)shmat(shm_id, NULL, 0);
