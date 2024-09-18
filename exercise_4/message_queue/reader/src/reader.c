@@ -21,7 +21,7 @@ char buffer[MAX_SIZE];
 struct timespec start;
 struct timespec end;
 
-void Write() {
+void Read() {
   // open the message queue
   mq = mq_open(QUEUE_NAME, O_RDONLY);
   if (mq == (mqd_t)-1) {
