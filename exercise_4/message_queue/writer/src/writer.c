@@ -45,7 +45,7 @@ void Write() {
 
   // send the start time as the first message
   sprintf(buffer, MAX_SIZE, "%ld %ld", start.tv_sec, start.tv_nsec);
-  if (mq_send(mq, buffer, MAX_SIZE, 0) == -1){
+  if (mq_send(mq, buffer, MAX_SIZE, 0) == -1) {
     perror("Error sending start time in mq_send.");
     exit(EXIT_FAILURE);
   }
@@ -62,7 +62,7 @@ void Write() {
 
   // Close the message queue
   if (mq_close(mq) == -1) {
-      perror("mq_close");
-      exit(1);
+    perror("mq_close");
+    exit(EXIT_FAILURE);
   }
 }
