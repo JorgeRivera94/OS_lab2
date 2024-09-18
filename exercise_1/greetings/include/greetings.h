@@ -9,4 +9,4 @@
  */
 void Greet();
 
-#endif
+#endif  // GREETINGS_H
