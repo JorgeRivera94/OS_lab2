@@ -27,12 +27,12 @@ void HandleCounters(pid_t* pids, int* count) {
     }
 
     // get process selection
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < *count; i++) {
       printf("Enter %d for process %d\n", i, pids[i]);
     }
     printf("Enter your selection: ");
     scanf("%d", &index);
-    if (index < 0 || index >= count) {
+    if (index < 0 || index >= *count) {
       printf("Invalid option.\n");
       continue;
     }
@@ -57,7 +57,7 @@ void HandleCounters(pid_t* pids, int* count) {
       case 5:
         kill(pid, SIGKILL);
         count--;
-        for (int e = index; e < count; e++) {
+        for (int e = index; e < *count; e++) {
           pids[e] = pids[e + 1];
         }
         break;
@@ -66,7 +66,7 @@ void HandleCounters(pid_t* pids, int* count) {
     }
 
     // if no process is alive, stop
-    if (count < 1) {
+    if (*count < 1) {
       printf("There are no infinite_counter processes alive. Bye!\n");
       exit(0);
     }
