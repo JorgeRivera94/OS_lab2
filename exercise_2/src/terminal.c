@@ -7,24 +7,38 @@
 #include <unistd.h>
 
 void HandleCommands(char* command) {
-  char* args[20];
+  char* commands[20];
   char* separated;
   int i = 0;
 
-  // separa the input
-  separated = strtok(command, " ");
+  // separate the input
+  separated = strtok(command, ";");
   while (separated != NULL) {
-    args[i++] = separated;
-    separated = strtok(NULL, " ");
+    commands[i++] = separated;
+    separated = strtok(NULL, ";");
   }
-  args[i] = NULL;
+  commands[i] = NULL;
 
-  int id = fork();
+  for (int j = 0; j < i; j++) {
+    char* args[20];
+    char* token;
+    int k = 0;
 
-  if (id == 0) {
-    execvp(args[0], args);
+    // separate the arguments
+    token = strtok(commands[j], " ");
+    while (token != NULL) {
+      args[k++] = token;
+      token = strtok(NULL, " ");
+    }
+    args[k] = NULL;
+
+    int id = fork();
+
+    if (id == 0) {
+      execvp(args[0], args);
+    }
+
+    // wait for child to terminate
+    wait(NULL);
   }
-
-  // wait for child to terminate
-  wait(NULL);
 }

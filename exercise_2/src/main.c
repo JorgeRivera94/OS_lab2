@@ -5,7 +5,7 @@
 int main() {
   // will process the string before passing it to HandleCommands
 
-  char command[100];  // big size in case there is a file path
+  char command[256];  // big size in case there is a file path
 
   while (1) {
     printf("> ");
