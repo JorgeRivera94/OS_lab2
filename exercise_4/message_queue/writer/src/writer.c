@@ -18,17 +18,16 @@ mqd_t mq;
 struct mq_attr attr;
 char buffer[MAX_SIZE];
 
-// initialize the queue attributes
-attr.mq_flags = 0;
-attr.mq_maxmsg = 10;
-attr.mq_msgsize = MAX_SIZE;
-attr.mq_curmsgs = 0;
-
 // structures to store elapsed time
 struct timespec start;
 struct timespec end;
 
 void Write() {
+  // initialize the queue attributes
+  attr.mq_flags = 0;
+  attr.mq_maxmsg = 10;
+  attr.mq_msgsize = MAX_SIZE;
+  attr.mq_curmsgs = 0;
   // Create the message queue
   mq = mq_open(QUEUE_NAME, O_CREAT | O_WRONLY | O_NONBLOCK, 0644, &attr);
   if (mq == (mqd_t)-1) {

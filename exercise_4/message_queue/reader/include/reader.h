@@ -2,7 +2,8 @@
 #define READER_H
 
 /**
- * @brief TODO add documentation
+ * @brief Receives 1000000 integers through a message queue and calculates their
+ * sum.
  *
  */
 void Read();
