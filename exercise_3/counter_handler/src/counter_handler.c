@@ -62,7 +62,7 @@ void HandleCounters(pid_t* pids, int* count) {
         break;
       case 5:
         kill(pid, SIGKILL);
-        *count--;
+        (*count)--;
         for (int e = index; e < *count; e++) {
           pids[e] = pids[e + 1];
         }
