@@ -3,6 +3,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 // initial values for count and direction
@@ -19,6 +20,8 @@ void Handler(int signal) {
 }
 
 void Count() {
+  printf("My pid is %d", getpid());
+
   // sigaction for signals
   struct sigaction sa1;
   sa1.sa_handler = Handler;

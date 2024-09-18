@@ -1,6 +1,8 @@
 #ifndef COUNTER_HANDLER_H
 #define COUNTER_HANDLER_H
 
+#include <sys/types.h>
+
 /**
  * @brief Recieves the pids of infinite_counter programs and provides the user
  * with signals that can be sent to these programs.

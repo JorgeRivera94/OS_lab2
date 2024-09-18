@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 void HandleCounters(pid_t* pids, int* count) {
@@ -11,6 +12,11 @@ void HandleCounters(pid_t* pids, int* count) {
   int index;
 
   while (1) {
+    // if no process is alive, stop
+    if (*count < 1) {
+      printf("There are no infinite_counter processes alive. Bye!\n");
+      exit(0);
+    }
     // print options
     printf("Enter 1 to stop an infinite_counter process.\n");
     printf("Enter 2 to continue an infinite_counter process.\n");
@@ -56,19 +62,13 @@ void HandleCounters(pid_t* pids, int* count) {
         break;
       case 5:
         kill(pid, SIGKILL);
-        count--;
+        *count--;
         for (int e = index; e < *count; e++) {
           pids[e] = pids[e + 1];
         }
         break;
       default:
         printf("Invalid choice.\n");
-    }
-
-    // if no process is alive, stop
-    if (*count < 1) {
-      printf("There are no infinite_counter processes alive. Bye!\n");
-      exit(0);
     }
   }
 }
