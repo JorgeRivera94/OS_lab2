@@ -10,7 +10,7 @@ project(infinite_counter)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
+# Add the executable
 add_executable(infinite_counter
                 src/main.c
                 src/infinite_counter.c)

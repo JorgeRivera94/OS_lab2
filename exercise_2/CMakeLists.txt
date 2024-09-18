@@ -10,7 +10,7 @@ project(terminal)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
+# Add the executable
 add_executable(terminal
                 src/main.c
                 src/terminal.c)

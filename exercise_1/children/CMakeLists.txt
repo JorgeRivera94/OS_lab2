@@ -10,7 +10,7 @@ project(children)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable
+# Add the executable
 add_executable(children
                 src/main.c
                 src/children.c)

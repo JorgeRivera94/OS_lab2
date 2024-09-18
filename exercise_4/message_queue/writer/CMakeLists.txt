@@ -10,7 +10,7 @@ project(writer)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable
+# Add the executable
 add_executable(writer
                 src/main.c
                 src/writer.c)

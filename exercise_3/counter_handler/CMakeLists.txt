@@ -10,7 +10,7 @@ project(counter_handler)
 # Incloude the current directory for header files
 include_directories(include)
 
-# Add the execuable AQUI IRA GREETINGS Y EL DE LOS CHILDREN
+# Add the exectuable
 add_executable(counter_handler
                 src/main.c
                 src/counter_handler.c)
