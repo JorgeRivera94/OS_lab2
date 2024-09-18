@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     pids[i] = (pid_t)atoi(argv[i + 1]);
   }
 
-  HandleCounters(pids, count);
+  HandleCounters(pids, &count);
 
   return 0;
 }

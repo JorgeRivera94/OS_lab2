@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void HandleCounters(pid_t* pids, int count) {
+void HandleCounters(pid_t* pids, int* count) {
   int selection;
   int index;
 
@@ -56,21 +56,17 @@ void HandleCounters(pid_t* pids, int count) {
         break;
       case 5:
         kill(pid, SIGKILL);
+        count--;
+        for (int e = index; e < count; e++) {
+          pids[e] = pids[e + 1];
+        }
         break;
       default:
         printf("Invalid choice.\n");
     }
 
     // if no process is alive, stop
-    bool remaining = false;
-    for (int i = 0; i < count; i++) {
-      // send signal to check if alive
-      if (kill(pids[i], 0) == 0) {
-        remaining = true;
-        break;
-      }
-    }
-    if (!remaining) {
+    if (count < 1) {
       printf("There are no infinite_counter processes alive. Bye!\n");
       exit(0);
     }
